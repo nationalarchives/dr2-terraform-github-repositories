@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           submodules: recursive
           token: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Configure AWS credentials for S3 state file access
-        uses: aws-actions/configure-aws-credentials@v4.2.1
+        uses: aws-actions/configure-aws-credentials@a688da0051a6df570b231c4b8ccbecce10786676
         with:
           role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/MgmtDPBootstrapTerraformGitHubRepositoriesRole
           aws-region: eu-west-2
@@ -30,12 +30,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Send failure message
         if: failure()
-        uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@main
+        uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@7f44edae156f1bfa890749bed3bcfa20a26d439a
         with:
           message: ":warning: ${{github.event.repository.name}} deploy failed"
           slack-url: ${{ secrets.SLACK_WEBHOOK }}
       - name: Send success message
-        uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@main
+        uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@7f44edae156f1bfa890749bed3bcfa20a26d439a
         with:
           message: ":white_check_mark: ${{github.event.repository.name}} deploy successful"
           slack-url: ${{ secrets.SLACK_WEBHOOK }}
