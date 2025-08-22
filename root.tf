@@ -179,3 +179,11 @@ module "dr2_runbooks_environments" {
     ACCOUNT_NUMBER = each.value
   }
 }
+
+module "da-dp-holding-verification" {
+  source          = "git::https://github.com/nationalarchives/da-terraform-modules//github_repository_secrets"
+  repository_name = "nationalarchives/da-dp-holding-verification"
+  secrets = {
+    WORKFLOW_TOKEN = data.aws_ssm_parameter.github_workflow_token.value
+  }
+}
