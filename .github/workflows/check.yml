@@ -25,7 +25,7 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/MgmtDPBootstrapTerraformGitHubRepositoriesRole
           aws-region: eu-west-2
           role-session-name: TerraformRole
-      - uses: hashicorp/setup-terraform@fe38bfbb36d6c5a1f3f64ef96bba7f30dfe0f038
+      - uses: hashicorp/setup-terraform@afa38526df51b6d16447109ab1e21fada7d93d63
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check --recursive
