@@ -9,23 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5
         with:
           submodules: recursive
           token: ${{ secrets.WORKFLOW_TOKEN }}
-      - uses: nationalarchives/tdr-github-actions/.github/actions/run-git-secrets@7f44edae156f1bfa890749bed3bcfa20a26d439a
-      - uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@7f44edae156f1bfa890749bed3bcfa20a26d439a
+      - uses: nationalarchives/tdr-github-actions/.github/actions/run-git-secrets@5d4fee21ed08f053613a7706e28623c0adc0f5f4
+      - uses: nationalarchives/tdr-github-actions/.github/actions/slack-send@5d4fee21ed08f053613a7706e28623c0adc0f5f4
         if: failure()
         with:
           message: ":warning: Secrets found in repository ${{ inputs.repo-name }}"
           slack-url: ${{ secrets.SLACK_WEBHOOK }}
       - name: Configure AWS credentials for S3 state file access
-        uses: aws-actions/configure-aws-credentials@0d00a56e021d460a2d2bb10b9d8f94f6693a71ad
+        uses: aws-actions/configure-aws-credentials@4a54c24244cf4f82abd7d44e7b2024258a8aa041
         with:
           role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/MgmtDPBootstrapTerraformGitHubRepositoriesRole
           aws-region: eu-west-2
           role-session-name: TerraformRole
-      - uses: hashicorp/setup-terraform@982f6f017c89db9dccac8593265de0c382e4c050
+      - uses: hashicorp/setup-terraform@4c5fdabea201636fa7ea13d8babd1ed828687f5d
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check --recursive
