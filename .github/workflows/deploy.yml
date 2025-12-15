@@ -17,7 +17,7 @@ jobs:
           submodules: recursive
           token: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Configure AWS credentials for S3 state file access
-        uses: aws-actions/configure-aws-credentials@8b8c83f061aa565ad33187ddf2af0a8370d4d420
+        uses: aws-actions/configure-aws-credentials@cf459bd40262a8603163308e488de922e4eb5a95
         with:
           role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/MgmtDPBootstrapTerraformGitHubRepositoriesRole
           aws-region: eu-west-2
