@@ -20,12 +20,12 @@ jobs:
           message: ":warning: Secrets found in repository ${{ inputs.repo-name }}"
           slack-url: ${{ secrets.SLACK_WEBHOOK }}
       - name: Configure AWS credentials for S3 state file access
-        uses: aws-actions/configure-aws-credentials@8b8c83f061aa565ad33187ddf2af0a8370d4d420
+        uses: aws-actions/configure-aws-credentials@5f81b77081d9eb79d8f9cc6ab6880645209baae7
         with:
           role-to-assume: arn:aws:iam::${{ secrets.MANAGEMENT_ACCOUNT }}:role/MgmtDPBootstrapTerraformGitHubRepositoriesRole
           aws-region: eu-west-2
           role-session-name: TerraformRole
-      - uses: hashicorp/setup-terraform@712b43959e9be7e82c34d18450fa5ec3237af3f1
+      - uses: hashicorp/setup-terraform@92e4d08fe1d24283952afa28216efa8f4ed5aeab
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check --recursive
