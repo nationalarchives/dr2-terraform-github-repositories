@@ -187,3 +187,11 @@ module "da-dp-holding-verification" {
     WORKFLOW_TOKEN = data.aws_ssm_parameter.github_workflow_token.value
   }
 }
+
+module "dr2-farm-survey" {
+  source          = "git::https://github.com/nationalarchives/da-terraform-modules//github_repository_secrets"
+  repository_name = "nationalarchives/dr2-farm-survey"
+  secrets = {
+    WORKFLOW_TOKEN = data.aws_ssm_parameter.github_workflow_token.value
+  }
+}
