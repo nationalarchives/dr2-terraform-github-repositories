@@ -6,7 +6,7 @@ This allows us to add secrets directly from Parameter Store / Secrets Manager
 ## Running Terraform Project Locally
 
 1. Clone DR2 GitHub Repositories project to local machine: https://github.com/nationalarchives/dr2-terraform-github-repositories and navigate to the directory
-2. Initialize Terraform (if not done so previously):
+2. Initialise Terraform (if not done so previously):
 
    ```
    [location of project] $ terraform init
