@@ -2,12 +2,16 @@ version: 2
 updates:
 
   - package-ecosystem: "github-actions"
+    cooldown:
+      default-days: 7
     directory: "/"
     schedule:
-      # Check for updates to GitHub Actions every week
-      interval: "weekly"
+      # Check for updates to GitHub Actions every month
+      interval: "monthly"
   - package-ecosystem: "terraform"
+    cooldown:
+      default-days: 7
     directory: "/"
     schedule:
-      # Check for updates to terraform every week
-      interval: "weekly"
+      # Check for updates to terraform every month
+      interval: "monthly"
